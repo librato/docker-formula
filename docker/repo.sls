@@ -11,7 +11,7 @@
 {% set humanname_old = 'Old ' if docker.use_old_repo else '' %}
 
 {%- if grains['os_family']|lower in ('debian',) %}
-{% set url = 'https://apt.dockerproject.org/repo ' ~ grains["os"]|lower ~ '-' ~ grains["oscodename"] ~ ' main' if docker.use_old_repo else docker.repo.url_base ~ ' ' ~ docker.repo.version ~ ' stable' %}
+{% set url = docker.repo.url_base ~ ' ' ~ grains["oscodename"]|lower ~ ' stable' %}
 
 docker-package-repository:
   pkgrepo.{{ repo_state }}:
