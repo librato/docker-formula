@@ -10,8 +10,10 @@ docker-containers:
       #image: 'docker.io/registry:latest'  ##Fedora
       image: "registry:latest"
       cmd:
-      # Pull image on service restart (useful if you override the same tag. example: latest)
+      # Pull image on service start (useful if you override the same tag. example: latest)
       pull_before_start: True
+      # Remove container on service start
+      remove_before_start: False
       # Do not force container removal on stop (unless true)
       remove_on_stop: false
       runoptions:
@@ -33,8 +35,10 @@ docker-containers:
       args:
         - '-config.file=/prom-data/prometheus.yml'
         - '-storage.local.path=/prom-data/data/'
-      # Pull image on service restart (useful if you override the same tag. example: latest)
+      # Pull image on service start (useful if you override the same tag. example: latest)
       pull_before_start: True
+      # Remove container on service start
+      remove_before_start: False
       # Do not force container removal on stop (unless true)
       remove_on_stop: false
       runoptions:
