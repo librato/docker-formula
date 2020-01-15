@@ -22,7 +22,7 @@ Install and run Docker daemon
 
 .. note::
 
-    On Ubuntu 12.04 state will also update kernel if needeed
+    On Ubuntu 12.04 state will also update kernel if needed
     (as mentioned in `docker installation docs <https://docs.docker.com/installation/ubuntulinux/>`_).
     You should manually reboot minions for kernel update to take affect.
     
@@ -51,6 +51,9 @@ To use it, just include *docker.containers* in your *top.sls*, and configure it 
           - "--rm"
       myapp:
         image: "myregistry.com:5000/training/app:3.0"
+	args:
+          - "https://someargument_as_an_url"
+          - "--port 5500"
         cmd:  python app.py
         runoptions:
           - "--log-driver=syslog"
@@ -67,6 +70,25 @@ In the example pillar above:
 - Upstart files are created for each container, so ``service <container_name> stop|start|status`` should just work
 - ``service <container_name> stop`` will wipeout the container completely (ie ``docker stop <container_name> + docker rm <container_name>``)
 
+``docker.clean``
+----------------
+
+Stop Docker daemon and remove older docker packages (usually called 'docker' and 'docker-engine'). Linux only.
+
+``docker.repo``
+---------------
+
+Configures the upstream docker's repo (true, by default).
+
+``docker.macosapp``
+-------------------
+
+Installs Docker Desktop for Mac.
+
+``docker.macosapp``
+-------------------
+
+Installs Docker Desktop for Mac.
 
 ``docker.compose``
 ------------------
@@ -78,7 +100,7 @@ with one another. Use `docker.compose-ng` to run `docker-compose`.
 ``docker.compose-ng``
 ---------------------
 
-The intent is to provide an interface similar to the `specification <https://docs.docker.com/compose/yml/>`_
+The intent is to provide an interface similar to the `specification <https://docs.docker.com/compose/compose-file/>`_
 provided by docker-compose. The hope is that you may provide pillar data
 similar to that which you would use to define services with docker-compose. The
 assumption is that you are already using pillar data and salt formulae to
@@ -178,10 +200,15 @@ In this case, extra *docker run* options can be provided in your *"registry:look
 
 By default, the storage backend used by the registry is "filesystem". Use environment variables to override that, for example to use S3 as backend storage.
 
+``docker.remove``
+----------------
+
+Stop Docker daemon. Remove older docker packages (usually called 'docker' and 'docker-engine').
+
 Development
 ===========
 
-Note that some of the internal states such as `docker.running` are references to the internal `dockerio states <https://docs.saltstack.com/en/latest/ref/states/all/salt.states.dockerio.html>`
+Note that some of the internal states such as `docker.running` are references to the internal `dockerio states <https://docs.saltstack.com/en/latest/ref/states/all/salt.states.dockerio.html>`_
 
 
 Testing
