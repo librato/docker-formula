@@ -4,6 +4,7 @@
 
 include:
   - docker
+  - authenticate
 
 {% for name, container in containers.items() %}
 docker-image-{{ name }}:
