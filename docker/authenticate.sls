@@ -4,7 +4,7 @@
 
 creds installatio:
   pkg.installed:
-    pkgs:
+    - pkgs:
       - gnupg2
       - pass
 
