@@ -29,6 +29,12 @@ Install and run Docker daemon
     You can override the default docker daemon options by setting each line in the *"docker-pkg:lookup:config"* pillar. This effectively writes the config in */etc/default/docker*. See *pillar.example*
 
 
+``docker.authenticate``
+-----------------------
+
+If the pillar `dockerhub_auth` exists, the username and password keys will be used to run a `docker login` for the root user, and hopefully further
+docker commands will use that auth.
+    
 ``docker.containers``
 ---------------------
 
