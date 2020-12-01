@@ -2,7 +2,7 @@
 
 # Need to install gnupg2 and pass to satisfy dockers credtnials helper I think
 
-creds installatio:
+creds-installation:
   pkg.installed:
     - pkgs:
       - gnupg2
